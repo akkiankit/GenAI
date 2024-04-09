@@ -1,10 +1,14 @@
 import os
-from langchain.llms import OpenAI
-from langchain.chat_models import ChatOpenAI
+# from langchain.llms import OpenAI
+from langchain_community.llms import OpenAI
+# from langchain_community.chat_models import ChatOpenAI
+from langchain_openai import ChatOpenAI
+# from langchain.chat_models import ChatOpenAI
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
 from langchain.chains import SequentialChain
-from langchain.callbacks import get_openai_callback
+# from langchain.callbacks import get_openai_callback
+from langchain_community.callbacks import get_openai_callback
 import json
 import pandas as pd
 import traceback
@@ -14,15 +18,15 @@ import PyPDF2
 load_dotenv()
 
 key = os.getenv("OPENAI_API_KEY")
-
+# print(key)
 # Creating instance of chat open ai api
 llm = ChatOpenAI(openai_api_key=key, model_name="gpt-3.5-turbo", temperature =0.7)
 
 # Reading Response.json from file system
-with open("..\\response.json", "r") as f:
+with open("response.json", "r") as f:
     RESPONSE_JSON = json.load(f)
 
-print(RESPONSE_JSON)
+# print(RESPONSE_JSON)
 
 
 TEMPLATE="""
